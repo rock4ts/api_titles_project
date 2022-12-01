@@ -1,0 +1,68 @@
+name: api_yamdb workflow
+
+on: [push]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@vmain
+    - name: Set up Python
+      uses: actions/setup-python@main
+      with:
+        python-version: 3.9
+    - name: Install dependecies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pep8-naming flake8-broken-line flake8-return flake8-isort
+        pip install -r requirements.txt
+    - name: Test with flake8 and pytests
+      run: |
+        python -m flake8
+        pytest
+
+  build_and_push_to_docker_hub:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    needs: tests
+    steps:
+    - uses: actions/checkout@main
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@master
+    - name: Login to Docker
+      uses: docker/login-action@master
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+    - name: Push to Docker Hub
+      uses: docker/build-push-action@master
+      with:
+        push: true
+        tags: rock4ts/infra-web-yamdb:latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build_and_push_to_docker_hub
+    steps:
+    - name: executing remote ssh commands to deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USER }}
+        key: ${{ secrets.KEY }}
+        passphrase: ${{ secrets.PASSPHRASE }}
+        script: |
+          sudo docker stop $(sudo docker ps -a -q)
+          sudo docker-compose up
+
+  send_message:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+    - name: send message
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: ${{ github.workflow }} успешно выполнен!
