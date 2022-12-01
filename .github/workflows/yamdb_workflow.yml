@@ -11,7 +11,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.9
+        python-version: 3.7
     - name: Install dependecies
       run: |
         python -m pip install --upgrade pip
@@ -40,6 +40,7 @@ jobs:
       with:
         push: true
         tags: rock4ts/infra-web-yamdb:latest
+        file: api_yamdb/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
