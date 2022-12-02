@@ -40,7 +40,7 @@ jobs:
       with:
         push: true
         tags: rock4ts/infra-web-yamdb:latest
-        file: api_yamdb/Dockerfile
+        file: ../api_yamdb/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
