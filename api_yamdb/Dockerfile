@@ -4,10 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip3 install -r requirements.txt --no-cache-dir &&\
-    python manage.py migrate &&\
-    python manage.py loaddata fixtures.json &&\
-    python manage.py collectstatic --no-input
+RUN pip3 install -r requirements.txt --no-cache-dir
 
 CMD ["gunicorn", "api_yamdb.wsgi:application", "--bind", "0:8000" ]
 

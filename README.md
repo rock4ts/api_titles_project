@@ -71,15 +71,36 @@ SECRET_KEY=p&l%385148kslhtyn^##a1)ilz@4zqj=rq&agdol^##zgl9(vs # не меняй�
 ```
 Для сборки образов и создания контейнеров выполните команду: 
 ```
-docker-compose up -d --build
+sudo docker compose up -d --build
 ```
 Команда запустит файл *docker-compose.yaml*, соберёт образы, cоздаст контейнеры для каждого сервиса и свяжет с томами static_value и media_value директории Nginx и API с данными медиа-файлов и статики.
 
-Dockerfile также содержит команды, которые автоматически выполнят миграции и соберут статику и загрузят тестовые данные.
+Теперь в контейнере с API (при сборке ему присвоено имя web-yamdb) необходимо выполнить миграции и собрать статику:
+```
+sudo docker compose exec web-yamdb python manage.py migrate
+```
+```
+sudo docker compose exec web-yamdb python manage.py collectstatic --no-input 
+```
+
+В директории API-приложения содержится файл fixtures.json с тестовыми данными, для загрузки (по желанию) выполните следующие команды:
+```
+sudo docker compose exec web-yamdb python manage.py shell
+```
+```
+# выполнить в открывшемся терминале:
+>>> from django.contrib.contenttypes.models import ContentType
+>>> ContentType.objects.all().delete()
+>>> quit()
+```
+
+```
+sudo docker compose exec web-yamdb python manage.py loaddata fixtures.json
+```
 
 Чтобы получить доступ к управлению базой данных через админ-зону, создайте суперпользователя:
 ```
-docker-compose exec web-yamdb python manage.py createsuperuser
+sudo docker compose exec web-yamdb python manage.py createsuperuser
 ```
 <br>
 
@@ -94,7 +115,7 @@ docker-compose exec web-yamdb python manage.py createsuperuser
 Имя файла допускается как в единственном, так и множественном числе.
 Для заполнения таблицы из директории `infra/` выполните команду:
 ```
-docker-compose exec web-yamdb python manage.py populate_reviews --path <file_path>/<table_name>.csv
+sudo docker compose exec web-yamdb python manage.py populate_reviews --path <file_path>/<table_name>.csv
 ```
 <br>
 
