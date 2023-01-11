@@ -115,7 +115,7 @@ sudo docker compose exec web-yamdb python manage.py createsuperuser
 Имя файла допускается как в единственном, так и множественном числе.
 Для заполнения таблицы выполните команду:
 ```
-sudo docker exec web-yamdb python manage.py populate_reviews --path <file_path>/<table_name>.csv
+sudo docker compose exec web-yamdb python manage.py populate_reviews --path <file_path>/<table_name>.csv
 ```
 <br>
 
