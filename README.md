@@ -1,8 +1,8 @@
-![titles_api workflow](https://github.com/rock4ts/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?event=push)
+![titles_api workflow](https://github.com/rock4ts/titles_api_teamwork/actions/workflows/titles_workflow.yml/badge.svg?event=push)
 
-# API_YaMDb
+# Titles API
 ## Описание
-Django-проект API YaMDb собирает отзывы пользователей на произведения. Сами произведения в YaMDb не хранятся, здесь нельзя посмотреть фильм или послушать музыку.<br>
+Django-проект API Titles собирает отзывы пользователей на произведения. Сами произведения в Titles не хранятся, здесь нельзя посмотреть фильм или послушать музыку.<br>
 Произведения делятся на категории, такие как «Книги», «Фильмы», «Музыка».
 Произведению может быть присвоен жанр из списка предустановленных (например, «Сказка», «Рок» или «Артхаус»). Добавлять произведения, категории и жанры может только администратор.<br>
 Благодарные или возмущённые пользователи оставляют к произведениям текстовые отзывы и ставят произведению оценку в диапазоне от одного до десяти (целое число); из пользовательских оценок формируется усреднённая оценка произведения — рейтинг (целое число). На одно произведение пользователь может оставить только один отзыв.
@@ -37,7 +37,7 @@ __Docker__:
 Образы автоматически загружаются с DockerHub'a.
 Dockerfile с конфигурацией образа для контейнера API лежит в папке *titles_api* и доступен для персональной конфигурации. Если вы решите использовать собственный образ, в файле *infra/docker-compose.yaml* строчку
 ```
-image: rock4ts/infra-web-yamdb:latest
+image: rock4ts/infra-titles_api:latest
 ```
 необходимо изменить на
 ```
@@ -75,17 +75,17 @@ sudo docker compose up -d --build
 ```
 Команда запустит файл *docker-compose.yaml*, соберёт образы, cоздаст контейнеры для каждого сервиса и свяжет с томами static_value и media_value директории Nginx и API с данными медиа-файлов и статики.
 
-Теперь в контейнере с API (при сборке ему присвоено имя web-yamdb) необходимо выполнить миграции и собрать статику:
+Теперь в контейнере с API (при сборке ему присвоено имя titles-api) необходимо выполнить миграции и собрать статику:
 ```
-sudo docker compose exec web-yamdb python manage.py migrate
+sudo docker compose exec titles-api python manage.py migrate
 ```
 ```
-sudo docker compose exec web-yamdb python manage.py collectstatic --no-input 
+sudo docker compose exec titles-api python manage.py collectstatic --no-input 
 ```
 
 В директории API-приложения содержится файл fixtures.json с тестовыми данными, для загрузки (по желанию) выполните следующие команды:
 ```
-sudo docker compose exec web-yamdb python manage.py shell
+sudo docker compose exec titles-api python manage.py shell
 ```
 ```
 # выполнить в открывшемся терминале:
@@ -95,12 +95,12 @@ sudo docker compose exec web-yamdb python manage.py shell
 ```
 
 ```
-sudo docker compose exec web-yamdb python manage.py loaddata fixtures.json
+sudo docker compose exec titles-api python manage.py loaddata fixtures.json
 ```
 
 Чтобы получить доступ к управлению базой данных через админ-зону, создайте суперпользователя:
 ```
-sudo docker compose exec web-yamdb python manage.py createsuperuser
+sudo docker compose exec titles-api python manage.py createsuperuser
 ```
 <br>
 
@@ -115,11 +115,11 @@ sudo docker compose exec web-yamdb python manage.py createsuperuser
 Имя файла допускается как в единственном, так и множественном числе.
 Для заполнения таблицы выполните команду:
 ```
-sudo docker compose exec web-yamdb python manage.py populate_reviews --path <file_path>/<table_name>.csv
+sudo docker compose exec titles-api python manage.py populate_reviews --path <file_path>/<table_name>.csv
 ```
 <br>
 
-## Ресурсы API YaMDb
+## Ресурсы API Titles
 - Ресурс auth: аутентификация.
 - Ресурс users: пользователи.
 - Ресурс titles: произведения, к которым пишут отзывы (определённый фильм, книга или песенка).
