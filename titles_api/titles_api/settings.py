@@ -40,7 +40,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'api_yamdb.urls'
+ROOT_URLCONF = 'titles_api.urls'
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 TEMPLATES = [
@@ -59,7 +59,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'api_yamdb.wsgi.application'
+WSGI_APPLICATION = 'titles_api.wsgi.application'
 
 DATABASES = {
     'default': {
@@ -127,4 +127,4 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 admin_methods = ('POST', 'PATCH', 'PUT', 'DELETE',)
 moderator_methods = ('PATCH', 'PUT', 'DELETE',)
 
-ADMINS_EMAIL = 'from@api_yamdb.com'
+ADMINS_EMAIL = 'from@titles_api.com'

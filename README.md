@@ -1,4 +1,4 @@
-![api_yamdb workflow](https://github.com/rock4ts/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?event=push)
+![titles_api workflow](https://github.com/rock4ts/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?event=push)
 
 # API_YaMDb
 ## Описание
@@ -35,13 +35,13 @@ __Docker__:
 
 Каждый сервис запускается в отдельном контейнере.
 Образы автоматически загружаются с DockerHub'a.
-Dockerfile с конфигурацией образа для контейнера API лежит в папке *api_yamdb* и доступен для персональной конфигурации. Если вы решите использовать собственный образ, в файле *infra/docker-compose.yaml* строчку
+Dockerfile с конфигурацией образа для контейнера API лежит в папке *titles_api* и доступен для персональной конфигурации. Если вы решите использовать собственный образ, в файле *infra/docker-compose.yaml* строчку
 ```
 image: rock4ts/infra-web-yamdb:latest
 ```
 необходимо изменить на
 ```
-build: ../api_yamdb
+build: ../titles_api
 ```
 
 __Для запуска проекта:__

@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 
-from api_yamdb.settings import admin_methods, moderator_methods
+from titles_api.settings import admin_methods, moderator_methods
 
 from .permissions import IsAdminOrSuperUser, IsModeratorOrAdminOrOwner
 

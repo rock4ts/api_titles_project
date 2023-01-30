@@ -1,4 +1,4 @@
-from api_yamdb import settings
+from titles_api import settings
 
 
 class TestSettings:
