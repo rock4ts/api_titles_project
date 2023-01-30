@@ -58,7 +58,7 @@ class UserViewSet(viewsets.ModelViewSet):
 class SignUpView(APIView):
     """
     Extends APIView class by defining user registration function.
-    Emply to register user and send confirmation code to email.
+    Apply to register user and send confirmation code to email.
     """
     permission_classes = (AllowAny,)
 
