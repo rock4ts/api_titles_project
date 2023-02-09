@@ -67,7 +67,13 @@ DB_HOST=db
 DB_PORT=5432
 
 DEBUG=False
-SECRET_KEY=p&l%385148kslhtyn^##a1)ilz@4zqj=rq&agdol^##zgl9(vs # не меняйте, скопируйте как есть
+SECRET_KEY= # создайте и активируйте виртуальное окружение, установите модуль Django==2.2.28 и
+сгенерируйте новый ключ. 
+Для этого, находясь в папке backend/foodgram, в терминале
+пропишите команду python manage.py shell и запустите следующий код:
+
+from django.core.management.utils import get_random_secret_key  
+get_random_secret_key()
 ```
 Для сборки образов и создания контейнеров выполните команду: 
 ```
