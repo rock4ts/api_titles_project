@@ -18,6 +18,8 @@ jobs:
         pip install flake8 pep8-naming flake8-broken-line flake8-return flake8-isort
         pip install -r titles_api/requirements.txt
     - name: Test with flake8 and pytests
+      env:
+        SECRET_KEY: 9e4a134329dbf4023e7939c605178326fa47e15522b5a7726c
       run: |
         python -m flake8
         pytest
