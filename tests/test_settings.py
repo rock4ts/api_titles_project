@@ -1,4 +1,4 @@
-from titles_api import settings
+from api_titles import settings
 
 
 class TestSettings:

@@ -1,6 +1,10 @@
 import os
 from datetime import timedelta
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = os.getenv('SECRET_KEY')
@@ -37,7 +41,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'titles_api.urls'
+ROOT_URLCONF = 'api_titles.urls'
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 TEMPLATES = [
@@ -56,7 +60,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'titles_api.wsgi.application'
+WSGI_APPLICATION = 'api_titles.wsgi.application'
 
 DATABASES = {
     'default': {
@@ -124,4 +128,4 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 admin_methods = ('POST', 'PATCH', 'PUT', 'DELETE',)
 moderator_methods = ('PATCH', 'PUT', 'DELETE',)
 
-ADMINS_EMAIL = 'from@titles_api.com'
+ADMINS_EMAIL = 'from@api_titles.com'

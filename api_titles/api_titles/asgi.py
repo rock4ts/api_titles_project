@@ -2,6 +2,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'titles_api.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'api_titles.settings')
 
 application = get_asgi_application()

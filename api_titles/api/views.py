@@ -12,7 +12,7 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from reviews.models import Category, Genre, Review, Title, User
 
-from titles_api.settings import ADMINS_EMAIL
+from api_titles.settings import ADMINS_EMAIL
 
 from .filters import TitleFilter
 from .mixins import AdminViewMixin, ModeratorViewMixin

@@ -6,6 +6,6 @@ COPY . .
 
 RUN pip3 install -r requirements.txt --no-cache-dir
 
-CMD ["gunicorn", "titles_api.wsgi:application", "--bind", "0:8000" ]
+CMD ["gunicorn", "api_titles.wsgi:application", "--bind", "0:8000" ]
 
 LABEL author='rock4ts' version=1.1

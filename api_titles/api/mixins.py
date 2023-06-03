@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 
-from titles_api.settings import admin_methods, moderator_methods
+from api_titles.settings import admin_methods, moderator_methods
 
 from .permissions import IsAdminOrSuperUser, IsModeratorOrAdminOrOwner
 
