@@ -11,6 +11,7 @@ python3 manage.py populate_reviews --path <path_name>
 
 * <path_name> should end with csv file name
 '''
+
 import csv
 import os
 import string
