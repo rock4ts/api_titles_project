@@ -132,6 +132,7 @@ class CategoryViewSet(
     serializer_class = CategorySerializer
     filter_backends = (filters.OrderingFilter, filters.SearchFilter,)
     search_fields = ('name', 'slug')
+    lookup_field = 'slug'
     ordering = ('name',)
 
 

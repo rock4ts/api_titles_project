@@ -83,6 +83,11 @@ class Test00UserRegistration:
             'email': valid_email,
             'username': valid_username
         }
+        valid_response = (
+            'Пользователь успешно зарегистрирован, '
+            'на указанную вами почту был отправлен '
+            'код потверждения, он понадобится для получения токена.'
+        )
         request_type = 'POST'
         response = client.post(self.url_signup, data=valid_data)
         outbox_after = mail.outbox  # email outbox after user create
@@ -96,7 +101,7 @@ class Test00UserRegistration:
             f'Проверьте, что при {request_type} запросе `{self.url_signup}` с валидными данными '
             f'создается пользователь и возвращается статус {code}'
         )
-        assert response.json() == valid_data, (
+        assert response.json() == valid_response, (
             f'Проверьте, что при {request_type} запросе `{self.url_signup}` с валидными данными '
             f'создается пользователь и возвращается статус {code}'
         )
