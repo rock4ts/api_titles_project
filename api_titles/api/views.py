@@ -71,8 +71,7 @@ class AuthViewSet(viewsets.ViewSet):
         else:
             serializer = SignupSerializer(data=self.request.data)
         serializer.is_valid(raise_exception=True)
-        validated_user_data = serializer.validated_data
-        return validated_user_data
+        return serializer.validated_data
 
     @action(methods=['POST'], detail=False)
     def signup(self, request):

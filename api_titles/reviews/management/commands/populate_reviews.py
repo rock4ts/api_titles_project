@@ -40,11 +40,11 @@ class Command(BaseCommand):
             model_name = string.capwords(to_singular, '_').replace('_', '')
 
         try:
-            Model = apps.get_model('reviews', model_name)
+            model = apps.get_model('reviews', model_name)
         except LookupError:
             raise CommandError(f"{model_name} model does not exist")
 
-        model_fields = [field.name for field in Model._meta.fields]
+        model_fields = [field.name for field in model._meta.fields]
         file_fields = []
 
         with open(path, 'rt') as file:
@@ -57,12 +57,12 @@ class Command(BaseCommand):
                 file_fields[i] = file_fields[i].replace('_id', '')
                 if not file_fields[i] in model_fields:
                     raise CommandError(
-                        f"{Model.__name__} model"
+                        f"{model.__name__} model"
                         f" does not have {file_fields[i]} field"
                     )
 
             for row in reader:
-                obj = Model()
+                obj = model()
                 for i, field_value in enumerate(row):
                     model_field = obj._meta.get_field(file_fields[i])
                     if isinstance(model_field, ForeignKey):
