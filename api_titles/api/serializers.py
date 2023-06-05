@@ -4,8 +4,8 @@ from rest_framework.relations import SlugRelatedField
 from rest_framework.validators import UniqueTogetherValidator, UniqueValidator
 
 from reviews.models import Category, Comment, Genre, Review, Title, User
-from .validators import (allowed_username_validator,
-                         score_validator, year_validator)
+from .validators import (allowed_username_validator, score_validator,
+                         year_validator)
 
 
 class SignupSerializer(serializers.ModelSerializer):

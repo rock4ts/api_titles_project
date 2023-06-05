@@ -14,11 +14,11 @@ from .filters import TitleFilter
 from .mixins import AdminViewMixin, ModeratorViewMixin
 from .permissions import IsAdminOrSuperUser
 from .serializers import (CategorySerializer, CommentSerializer,
-                          ConfirmationCodeSerializer,
-                          GenreSerializer, TitleGetSerializer,
+                          ConfirmationCodeSerializer, GenreSerializer,
                           ReviewSerializer, SignupSerializer,
-                          TitlePostSerializer, TokenSerializer,
-                          UserPatchMeSerializer, UserSerializer)
+                          TitleGetSerializer, TitlePostSerializer,
+                          TokenSerializer, UserPatchMeSerializer,
+                          UserSerializer)
 from .utils import get_response_message, send_confirmation_code
 
 
@@ -111,7 +111,7 @@ class AuthViewSet(viewsets.ViewSet):
             user = User.objects.get(username=username)
         except User.DoesNotExist:
             return Response(
-                get_response_message(username).get('invalid_username'),
+                get_response_message().get('invalid_username'),
                 status=status.HTTP_404_NOT_FOUND
             )
         if not default_token_generator.check_token(

@@ -1,6 +1,28 @@
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 
+response_messages = {
+    'successful_registration': (
+        'Пользователь успешно зарегистрирован, '
+        'на указанную почту был отправлен код потверждения, '
+        'он понадобится для получения токена.'
+    ),
+    'invalid_username': 'Пользователя с указанным username не существует.',
+    'invalid_email': (
+        'Вы ввели неправильный emal'
+    ),
+    'confirmation_code_sent': (
+        'Запрос успешно выполнен: обновлённый код для получения токена '
+        'отправлен на ваш email.'
+    ),
+    'invalid_confirmation_code': (
+        'Неверный код подтверждения.'
+    ),
+    'user_not_found': (
+        'Пользователь не найден, проверьте корректность введённых данных.'
+    ),
+}
+
 
 def send_confirmation_code(user, sender_email, recipent_email):
     '''
@@ -16,22 +38,5 @@ def send_confirmation_code(user, sender_email, recipent_email):
     )
 
 
-def get_response_message(value=''):
-    response_messages = {
-        'successful_registration':
-            'Пользователь успешно зарегистрирован, '
-            'на указанную вами почту был отправлен код потверждения, '
-            'он понадобится для получения токена.',
-        'invalid_username':
-            f'Пользователя с именем {value} не существует.',
-        'invalid_email':
-            'Вы ввели неправильный emal',
-        'confirmation_code_sent':
-            'Запрос успешно выполнен: обновлённый код для получения токена '
-            'отправлен на ваш email.',
-        'invalid_confirmation_code':
-            'Неверный код подтверждения.',
-        'user_not_found':
-            'Пользователь не найден, проверьте корректность введённых данных.'
-    }
+def get_response_message():
     return response_messages
