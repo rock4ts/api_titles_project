@@ -10,7 +10,7 @@ services:
       - ./.env
 
   api_titles:
-    image: rock4ts/api_titles:v1.1
+    build: rock4ts/api_titles:v1.1
     restart: always
     volumes:
       - static_value:/app/static/

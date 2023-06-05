@@ -1,10 +1,12 @@
 import os
 import sys
+from os.path import join
 
 from django.utils.version import get_version
 
 root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(root_dir)
+infra_dir_path = join(root_dir, 'infra')
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 root_dir_content = os.listdir(BASE_DIR)

@@ -27,9 +27,9 @@ class SignupSerializer(serializers.ModelSerializer):
                 regex=r'^[\w.@+-]+$',
                 message=(
                     'Имя пользователя должно состоять из букв, '
-                     'цифр и символов @/./+/-/_'
-                    )
-                ),
+                    'цифр и символов @/./+/-/_'
+                )
+            ),
             UniqueValidator(
                 queryset=User.objects.all(),
                 message="Введённый username используется другим пользователем."
